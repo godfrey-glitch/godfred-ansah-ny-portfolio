@@ -1,0 +1,578 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Godfred Nana Yaw Ansah — PR &amp; Digital Communication Specialist</title>
+<meta name="description" content="Godfred Nana Yaw Ansah — PR & Digital Communication Specialist, Social Media Manager, Content Creator, and Founder of Nyansa AI.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#15120E;
+    --ink-2:#1C1812;
+    --paper:#F0E9DE;
+    --paper-mute:#9C948A;
+    --gold:#C9A65A;
+    --gold-dim:#8A733F;
+    --rule: rgba(240,233,222,0.12);
+    --serif: 'Playfair Display', Georgia, serif;
+    --sans: 'Inter', system-ui, sans-serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--ink);
+    color:var(--paper);
+    font-family:var(--sans);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit;text-decoration:none}
+  ::selection{background:var(--gold);color:var(--ink)}
+  img{max-width:100%;display:block}
+
+  .wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+
+  /* ---------- NAV ---------- */
+  header.site-nav{
+    position:fixed;top:0;left:0;right:0;z-index:100;
+    background:rgba(21,18,14,0.85);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--rule);
+  }
+  .nav-inner{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:18px 24px;max-width:1080px;margin:0 auto;
+  }
+  .nav-mark{font-family:var(--serif);font-style:italic;font-weight:600;font-size:18px;letter-spacing:0.02em}
+  .nav-links{display:flex;gap:36px;list-style:none}
+  .nav-links a{
+    font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:var(--paper-mute);
+    transition:color .25s ease;
+  }
+  .nav-links a:hover{color:var(--gold)}
+  .nav-toggle{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:6px}
+  .nav-toggle span{width:22px;height:1.5px;background:var(--paper);transition:.25s ease}
+
+  /* ---------- HERO ---------- */
+  .hero{
+    min-height:100vh;display:flex;flex-direction:column;justify-content:center;
+    padding:140px 24px 80px;position:relative;
+    background:
+      radial-gradient(ellipse at 75% 20%, rgba(201,166,90,0.08), transparent 55%),
+      linear-gradient(90deg, var(--ink) 0%, var(--ink) 38%, rgba(21,18,14,0.75) 62%, rgba(21,18,14,0.55) 100%),
+      url('godfred-headshot.jpg') center 20% / cover no-repeat,
+      var(--ink);
+  }
+  @media(max-width:860px){
+    .hero{
+      background:
+        radial-gradient(ellipse at 75% 20%, rgba(201,166,90,0.08), transparent 55%),
+        linear-gradient(180deg, rgba(21,18,14,0.5) 0%, var(--ink) 75%),
+        url('godfred-headshot.jpg') center 15% / cover no-repeat,
+        var(--ink);
+    }
+  }
+  .hero-inner{max-width:1080px;margin:0 auto;width:100%}
+  .eyebrow{
+    display:flex;align-items:center;gap:14px;
+    font-size:12px;letter-spacing:0.22em;text-transform:uppercase;color:var(--gold);
+    margin-bottom:28px;
+  }
+  .eyebrow::before{content:'';width:32px;height:1px;background:var(--gold-dim)}
+  .hero h1{
+    font-family:var(--serif);font-weight:600;
+    font-size:clamp(38px,7vw,84px);line-height:1.04;letter-spacing:-0.01em;
+    max-width:920px;
+  }
+  .hero h1 em{font-style:italic;color:var(--gold);font-weight:500}
+  .hero-tagline{
+    margin-top:22px;font-size:clamp(14px,1.6vw,17px);color:var(--paper-mute);
+    letter-spacing:0.02em;text-transform:uppercase;font-weight:500;
+  }
+  .hero-statement{
+    margin-top:32px;max-width:560px;font-size:clamp(16px,1.8vw,19px);
+    color:var(--paper);opacity:0.92;font-weight:400;
+  }
+  .hero-cta{display:flex;gap:16px;margin-top:44px;flex-wrap:wrap}
+  .btn{
+    display:inline-flex;align-items:center;gap:10px;
+    padding:14px 26px;font-size:13px;letter-spacing:0.08em;text-transform:uppercase;
+    border:1px solid var(--rule);transition:.25s ease;font-weight:500;
+  }
+  .btn-primary{background:var(--gold);color:var(--ink);border-color:var(--gold)}
+  .btn-primary:hover{background:transparent;color:var(--gold)}
+  .btn-ghost{color:var(--paper);border-color:var(--rule)}
+  .btn-ghost:hover{border-color:var(--gold);color:var(--gold)}
+  .scroll-mark{
+    position:absolute;bottom:36px;left:24px;display:flex;align-items:center;gap:10px;
+  }
+  .scroll-mark span{font-size:10px;letter-spacing:0.22em;text-transform:uppercase;color:var(--paper-mute)}
+  .scroll-line{width:1px;height:40px;background:linear-gradient(var(--gold-dim),transparent)}
+
+  /* ---------- SECTION SHELL ---------- */
+  section{padding:120px 24px;position:relative}
+  .section-head{
+    display:flex;align-items:baseline;gap:20px;margin-bottom:64px;
+  }
+  .section-num{font-family:var(--serif);font-style:italic;color:var(--gold);font-size:15px}
+  .section-head h2{
+    font-family:var(--serif);font-weight:600;font-size:clamp(28px,4vw,44px);
+    letter-spacing:-0.01em;
+  }
+  .rule{height:1px;background:var(--rule);border:none;width:100%}
+
+  /* ---------- ABOUT ---------- */
+  .about-grid{
+    display:grid;grid-template-columns:1.3fr 0.9fr;gap:72px;align-items:start;
+  }
+  .about-text p{font-size:16px;color:var(--paper);opacity:0.9;margin-bottom:18px;max-width:60ch}
+  .about-text p:last-child{margin-bottom:0}
+  .about-photo-frame{
+    position:relative;transform:rotate(-2deg);
+    border:1px solid var(--rule);padding:14px;background:var(--ink-2);
+  }
+  .about-photo{
+    aspect-ratio:4/5;
+    overflow:hidden;
+    background:var(--ink-2);
+  }
+
+  /* ---------- EXPERIENCE ---------- */
+  .exp-list{display:flex;flex-direction:column}
+  .exp-row{
+    display:grid;grid-template-columns:170px 1fr;gap:32px;
+    padding:36px 0;border-bottom:1px solid var(--rule);
+  }
+  .exp-row:first-child{padding-top:0}
+  .exp-date{font-size:12px;letter-spacing:0.08em;text-transform:uppercase;color:var(--gold);padding-top:4px}
+  .exp-org{font-family:var(--serif);font-size:22px;font-weight:600;margin-bottom:4px}
+  .exp-role{font-size:13px;color:var(--paper-mute);letter-spacing:0.03em;margin-bottom:16px;text-transform:uppercase}
+  .exp-bullets{list-style:none}
+  .exp-bullets li{
+    position:relative;padding-left:18px;margin-bottom:8px;
+    font-size:15px;color:var(--paper);opacity:0.85;
+  }
+  .exp-bullets li::before{
+    content:'—';position:absolute;left:0;color:var(--gold-dim);
+  }
+  .exp-link{
+    display:inline-block;margin-top:14px;font-size:12px;letter-spacing:0.08em;
+    text-transform:uppercase;color:var(--gold);border-bottom:1px solid var(--gold-dim);
+  }
+
+  /* ---------- SKILLS ---------- */
+  .skills-groups{display:grid;grid-template-columns:repeat(3,1fr);gap:48px}
+  .skill-group h3{
+    font-family:var(--serif);font-style:italic;font-size:17px;font-weight:600;
+    color:var(--gold);margin-bottom:20px;
+  }
+  .pill-list{display:flex;flex-wrap:wrap;gap:10px}
+  .pill{
+    font-size:12px;padding:8px 14px;border:1px solid var(--rule);
+    color:var(--paper-mute);letter-spacing:0.02em;transition:.2s ease;
+  }
+  .pill:hover{border-color:var(--gold-dim);color:var(--paper)}
+
+  /* ---------- CONTACT ---------- */
+  .contact-grid{display:grid;grid-template-columns:0.9fr 1.1fr;gap:72px}
+  .contact-intro p{font-size:16px;color:var(--paper);opacity:0.9;margin-bottom:32px;max-width:44ch}
+  .contact-links{display:flex;flex-direction:column;gap:16px}
+  .contact-link{
+    display:flex;justify-content:space-between;align-items:center;
+    padding:16px 0;border-bottom:1px solid var(--rule);font-size:14px;
+  }
+  .contact-link span:first-child{color:var(--paper-mute);letter-spacing:0.05em;text-transform:uppercase;font-size:11px}
+  .contact-link a{color:var(--paper);transition:.2s ease}
+  .contact-link a:hover{color:var(--gold)}
+
+  form.contact-form{display:flex;flex-direction:column;gap:20px}
+  .field{display:flex;flex-direction:column;gap:8px}
+  .field label{font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--paper-mute)}
+  .field input, .field textarea{
+    background:transparent;border:none;border-bottom:1px solid var(--rule);
+    color:var(--paper);font-family:var(--sans);font-size:15px;padding:10px 2px;
+    transition:.25s ease;
+  }
+  .field input:focus, .field textarea:focus{outline:none;border-color:var(--gold)}
+  .field textarea{resize:vertical;min-height:110px}
+  .form-submit{
+    margin-top:8px;align-self:flex-start;
+    background:var(--gold);color:var(--ink);border:1px solid var(--gold);
+    padding:14px 30px;font-size:13px;letter-spacing:0.08em;text-transform:uppercase;
+    cursor:pointer;transition:.25s ease;font-weight:600;font-family:var(--sans);
+  }
+  .form-submit:hover{background:transparent;color:var(--gold)}
+  .form-submit:disabled{opacity:0.5;cursor:not-allowed}
+  .form-status{font-size:13px;margin-top:4px;min-height:18px}
+  .form-status.ok{color:#8FBF8F}
+  .form-status.err{color:#D98080}
+
+  /* ---------- FOOTER ---------- */
+  footer{
+    padding:48px 24px;border-top:1px solid var(--rule);
+    display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;
+  }
+  footer p{font-size:12px;color:var(--paper-mute);letter-spacing:0.03em}
+  .to-top{font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold-dim)}
+  .to-top:hover{color:var(--gold)}
+
+  /* ---------- REVEAL ANIMATION ---------- */
+  .reveal{opacity:0;transform:translateY(24px);transition:opacity .8s ease, transform .8s ease}
+  .reveal.in{opacity:1;transform:translateY(0)}
+  @media(prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto}
+    .reveal{transition:none;opacity:1;transform:none}
+  }
+
+  /* ---------- RESPONSIVE ---------- */
+  @media(max-width:860px){
+    .about-grid, .contact-grid{grid-template-columns:1fr;gap:48px}
+    .about-photo-frame{max-width:320px}
+    .skills-groups{grid-template-columns:1fr 1fr;gap:36px}
+    .exp-row{grid-template-columns:1fr;gap:8px}
+  }
+  @media(max-width:640px){
+    .nav-links{
+      position:fixed;top:64px;left:0;right:0;bottom:0;
+      background:var(--ink);flex-direction:column;gap:0;
+      padding:20px 24px;transform:translateX(100%);transition:transform .3s ease;
+    }
+    .nav-links.open{transform:translateX(0)}
+    .nav-links li{border-bottom:1px solid var(--rule)}
+    .nav-links a{display:block;padding:18px 0}
+    .nav-toggle{display:flex}
+    section{padding:80px 20px}
+    .skills-groups{grid-template-columns:1fr}
+    .exp-row{padding:28px 0}
+  }
+</style>
+</head>
+<body>
+
+<header class="site-nav">
+  <div class="nav-inner">
+    <a href="#hero" class="nav-mark">G. Ansah</a>
+    <button class="nav-toggle" aria-label="Toggle menu" id="navToggle">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#about">About</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="blog.html">Blog</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</header>
+
+<!-- Netlify Identity — required for the /admin login (Decap CMS) to work site-wide -->
+<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+<script>
+  if (window.netlifyIdentity) {
+    window.netlifyIdentity.on("init", user => {
+      if (!user) {
+        window.netlifyIdentity.on("login", () => { document.location.href = "/admin/"; });
+      }
+    });
+  }
+</script>
+
+<!-- ===================== HERO ===================== -->
+<section class="hero" id="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">Portfolio</div>
+    <h1>Godfred Nana Yaw <em>Ansah</em></h1>
+    <p class="hero-tagline">PR &amp; Digital Communication Specialist · Social Media Manager · Content Creator · Founder, Nyansa AI</p>
+    <p class="hero-statement">I turn ideas into impact. Crafting compelling narratives, building powerful brand presence, and connecting organisations to the audiences that matter most.</p>
+    <div class="hero-cta">
+      <a href="#experience" class="btn btn-primary">View Work</a>
+      <a href="#contact" class="btn btn-ghost">Get In Touch</a>
+    </div>
+  </div>
+  <div class="scroll-mark">
+    <div class="scroll-line"></div>
+    <span>Scroll</span>
+  </div>
+</section>
+
+<!-- ===================== ABOUT ===================== -->
+<section id="about">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="section-num">II</span>
+      <h2>About</h2>
+    </div>
+    <div class="about-grid">
+      <div class="about-text reveal">
+        <p>I am a Public Relations and Digital Communication specialist, currently serving as the Communication &amp; Marketing Assistant at Africa Dyslexia Organization — where I manage social media, design newsletters, and run campaigns advocating for inclusive education across Africa.</p>
+        <p>I am also the Founder of <strong>Nyansa AI</strong>, a Ghana-localised AI educational platform for students aged 4–18, built on the GES curriculum and available in seven Ghanaian languages. I built it as a communications student because I saw a gap and refused to wait.</p>
+        <p>My background spans film production, youth leadership, ambassador and volunteer roles, and a deep personal connection to the causes I work for.</p>
+      </div>
+      <div class="about-photo-frame reveal">
+        <div class="about-photo">
+          <img src="godfred-bw.jpg" alt="Godfred Nana Yaw Ansah" style="width:100%;height:100%;object-fit:cover">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="rule wrap">
+
+<!-- ===================== EXPERIENCE ===================== -->
+<section id="experience">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="section-num">III</span>
+      <h2>Experience</h2>
+    </div>
+    <div class="exp-list">
+
+      <div class="exp-row reveal">
+        <div class="exp-date">March 2026 — Present</div>
+        <div>
+          <div class="exp-org">Africa Dyslexia Organization</div>
+          <div class="exp-role">Communication &amp; Marketing Assistant</div>
+          <ul class="exp-bullets">
+            <li>Supporting research on dyslexia, learning differences, and inclusive education</li>
+            <li>Creating and managing social media content, newsletters, and reports</li>
+            <li>Supporting grant research and donor mapping</li>
+            <li>Assisting with programme coordination and volunteer engagement</li>
+            <li>Maintaining records and documentation</li>
+            <li>Supporting events, trainings, and outreach activities</li>
+            <li>Providing administrative and operational support</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="exp-row reveal">
+        <div class="exp-date">March 2026 — Present</div>
+        <div>
+          <div class="exp-org">Nyansa AI</div>
+          <div class="exp-role">Founder &amp; CEO</div>
+          <ul class="exp-bullets">
+            <li>Built a Ghana-localised AI educational platform for students aged 4–18</li>
+            <li>Aligned with GES/NaCCA curriculum, available in 7 Ghanaian languages</li>
+            <li>Features: AI Tutor, Quiz Engine, WASSCE &amp; BECE Prep, Kids Mode, Flashcards, Study Plans, Dyslexia-friendly design</li>
+            <li>Leading all product development, branding, and digital communications</li>
+          </ul>
+          <a href="https://nyansaai.netlify.app" target="_blank" rel="noopener" class="exp-link">Visit Nyansa AI →</a>
+        </div>
+      </div>
+
+      <div class="exp-row reveal">
+        <div class="exp-date">2024 — Present</div>
+        <div>
+          <div class="exp-org">Next Pro Films</div>
+          <div class="exp-role">Assistant Production Manager · Location Manager · Boom Operator</div>
+          <ul class="exp-bullets">
+            <li>Managing filming locations, permits, access, and on-site logistics</li>
+            <li>Working as Boom Operator, capturing clear dialogue and sound</li>
+            <li>Coordinating with directors, camera operators, and crew</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="exp-row reveal">
+        <div class="exp-date">2024 — 2026</div>
+        <div>
+          <div class="exp-org">ATU TV Studio</div>
+          <div class="exp-role">Public Relations / Production Intern</div>
+          <ul class="exp-bullets">
+            <li>Supporting content planning, media production, and communications</li>
+            <li>Assisting with camera handling, boom mic, and lighting</li>
+            <li>Managing social media updates and event publicity</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="exp-row reveal">
+        <div class="exp-date">2024 — 2025</div>
+        <div>
+          <div class="exp-org">Ambassador &amp; Volunteer Roles</div>
+          <div class="exp-role">Various Organisations</div>
+          <ul class="exp-bullets">
+            <li>Ambassador / Volunteer — Alice TalkWorld</li>
+            <li>Ambassador / Volunteer — LEC Group</li>
+            <li>Ambassador / Volunteer — National Youth Mentorship Summit</li>
+            <li>Ambassador / Volunteer — Ghana Tertiary Excellence Awards</li>
+            <li>Ambassador / Volunteer — Africa Real Estate</li>
+            <li>Member — ATU Parliament House</li>
+            <li>Former Ranking Member, Entertainment Committee — Youth Impact Parliament (YIP)</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<hr class="rule wrap">
+
+<!-- ===================== SKILLS ===================== -->
+<section id="skills">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="section-num">IV</span>
+      <h2>Skills</h2>
+    </div>
+    <div class="skills-groups">
+      <div class="skill-group reveal">
+        <h3>Communications</h3>
+        <div class="pill-list">
+          <span class="pill">Public Relations</span>
+          <span class="pill">Content Creation</span>
+          <span class="pill">Copywriting</span>
+          <span class="pill">Campaign Management</span>
+          <span class="pill">Donor Outreach</span>
+        </div>
+      </div>
+      <div class="skill-group reveal">
+        <h3>Digital &amp; Media</h3>
+        <div class="pill-list">
+          <span class="pill">Facebook</span>
+          <span class="pill">Instagram</span>
+          <span class="pill">TikTok</span>
+          <span class="pill">LinkedIn</span>
+          <span class="pill">Twitter / X</span>
+          <span class="pill">WhatsApp Channels</span>
+          <span class="pill">Newsletter Design (Mailchimp)</span>
+        </div>
+      </div>
+      <div class="skill-group reveal">
+        <h3>Production &amp; Tools</h3>
+        <div class="pill-list">
+          <span class="pill">Camera</span>
+          <span class="pill">Boom Mic</span>
+          <span class="pill">Lighting</span>
+          <span class="pill">Location Management</span>
+          <span class="pill">Canva</span>
+          <span class="pill">CapCut</span>
+          <span class="pill">MS Word / PowerPoint</span>
+          <span class="pill">Event &amp; Admin Coordination</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="rule wrap">
+
+<!-- ===================== CONTACT ===================== -->
+<section id="contact">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="section-num">V</span>
+      <h2>Contact</h2>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-intro reveal">
+        <p>Open to communications, PR, and content opportunities — or a conversation about Nyansa AI. Based in Tema, Ghana.</p>
+        <div class="contact-links">
+          <div class="contact-link">
+            <span>Email</span>
+            <a href="mailto:godfredansahnanayaw@gmail.com">godfredansahnanayaw@gmail.com</a>
+          </div>
+          <div class="contact-link">
+            <span>WhatsApp</span>
+            <a href="https://wa.me/233240043865" target="_blank" rel="noopener">+233 24 004 3865</a>
+          </div>
+          <div class="contact-link">
+            <span>LinkedIn</span>
+            <a href="https://www.linkedin.com/in/godfred-ansah-b112b32b9" target="_blank" rel="noopener">linkedin.com/in/godfred-ansah</a>
+          </div>
+          <div class="contact-link">
+            <span>Nyansa AI</span>
+            <a href="https://nyansaai.netlify.app" target="_blank" rel="noopener">nyansaai.netlify.app</a>
+          </div>
+        </div>
+      </div>
+
+      <form class="contact-form reveal" id="contactForm" action="https://formspree.io/f/xykoonyv" method="POST">
+        <div class="field">
+          <label for="name">Name</label>
+          <input type="text" id="name" name="name" required>
+        </div>
+        <div class="field">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="_replyto" required>
+        </div>
+        <div class="field">
+          <label for="message">Message</label>
+          <textarea id="message" name="message" required></textarea>
+        </div>
+        <button type="submit" class="form-submit" id="submitBtn">Send Message</button>
+        <p class="form-status" id="formStatus"></p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>© 2026 Godfred Nana Yaw Ansah. All rights reserved.</p>
+  <a href="#hero" class="to-top">Back to top ↑</a>
+</footer>
+
+<script>
+  // Mobile nav toggle
+  const navToggle = document.getElementById('navToggle');
+  const navLinks = document.getElementById('navLinks');
+  navToggle.addEventListener('click', () => navLinks.classList.toggle('open'));
+  navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
+
+  // Scroll reveal
+  const revealEls = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+    revealEls.forEach(el => io.observe(el));
+  } else {
+    revealEls.forEach(el => el.classList.add('in'));
+  }
+
+  // Formspree AJAX submit (progressive enhancement — form still works without JS)
+  const form = document.getElementById('contactForm');
+  const submitBtn = document.getElementById('submitBtn');
+  const status = document.getElementById('formStatus');
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Sending...';
+    status.textContent = '';
+    status.className = 'form-status';
+
+    try {
+      const res = await fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { 'Accept': 'application/json' }
+      });
+      if (res.ok) {
+        status.textContent = 'Message sent — thank you. I\'ll get back to you soon.';
+        status.classList.add('ok');
+        form.reset();
+      } else {
+        throw new Error('Form submission failed');
+      }
+    } catch (err) {
+      status.textContent = 'Something went wrong. Please email me directly at godfredansahnanayaw@gmail.com.';
+      status.classList.add('err');
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Send Message';
+    }
+  });
+</script>
+
+</body>
+</html>

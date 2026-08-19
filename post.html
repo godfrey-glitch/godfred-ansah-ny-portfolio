@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Blog — Godfred Nana Yaw Ansah</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<style>
+  :root{
+    --ink:#15120E; --ink-2:#1C1812; --paper:#F0E9DE; --paper-mute:#9C948A;
+    --gold:#C9A65A; --gold-dim:#8A733F; --rule: rgba(240,233,222,0.12);
+    --serif: 'Playfair Display', Georgia, serif; --sans: 'Inter', system-ui, sans-serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:var(--ink);color:var(--paper);font-family:var(--sans);line-height:1.7;-webkit-font-smoothing:antialiased}
+  a{color:var(--gold)}
+  .wrap{max-width:720px;margin:0 auto;padding:0 24px}
+
+  header.site-nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(21,18,14,0.85);backdrop-filter:blur(10px);border-bottom:1px solid var(--rule)}
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;padding:18px 24px;max-width:1080px;margin:0 auto}
+  .nav-mark{font-family:var(--serif);font-style:italic;font-weight:600;font-size:18px;text-decoration:none;color:var(--paper)}
+  .back-link{font-size:12px;letter-spacing:0.1em;text-transform:uppercase;color:var(--paper-mute);text-decoration:none}
+  .back-link:hover{color:var(--gold)}
+
+  article{padding:160px 24px 100px}
+  .post-date{font-size:12px;letter-spacing:0.08em;text-transform:uppercase;color:var(--gold-dim);margin-bottom:16px}
+  .post-title{font-family:var(--serif);font-weight:600;font-size:clamp(30px,5vw,48px);margin-bottom:40px;line-height:1.15}
+  .post-body p{margin-bottom:20px;color:var(--paper);opacity:0.92;font-size:17px}
+  .post-body h2{font-family:var(--serif);font-size:26px;margin:36px 0 16px}
+  .post-body a{border-bottom:1px solid var(--gold-dim)}
+  .post-body img{max-width:100%;margin:24px 0;border:1px solid var(--rule)}
+  .post-body ul, .post-body ol{margin:0 0 20px 22px;color:var(--paper);opacity:0.92}
+  .post-body blockquote{border-left:2px solid var(--gold-dim);padding-left:20px;color:var(--paper-mute);font-style:italic;margin:24px 0}
+
+  .state-msg{color:var(--paper-mute);font-size:14px}
+
+  footer{padding:48px 24px;border-top:1px solid var(--rule);text-align:center;max-width:1080px;margin:0 auto}
+  footer p{font-size:12px;color:var(--paper-mute)}
+</style>
+</head>
+<body>
+
+<header class="site-nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-mark">G. Ansah</a>
+    <a href="blog.html" class="back-link">← All posts</a>
+  </div>
+</header>
+
+<article class="wrap" id="postContainer">
+  <p class="state-msg">Loading…</p>
+</article>
+
+<footer>
+  <p>© 2026 Godfred Nana Yaw Ansah. All rights reserved.</p>
+</footer>
+
+<script>
+  // ===== CONFIG — must match blog.html =====
+  const GITHUB_USER = "YOUR_GITHUB_USERNAME";
+  const GITHUB_REPO = "YOUR_REPO_NAME";
+  const BRANCH = "main";
+  // ===========================================
+
+  const container = document.getElementById('postContainer');
+
+  function parseFrontmatter(raw) {
+    const match = raw.match(/^---\s*([\s\S]*?)\s*---\s*([\s\S]*)$/);
+    if (!match) return { data: {}, body: raw };
+    const data = {};
+    match[1].split('\n').forEach(line => {
+      const idx = line.indexOf(':');
+      if (idx === -1) return;
+      const key = line.slice(0, idx).trim();
+      let val = line.slice(idx + 1).trim();
+      val = val.replace(/^['"]|['"]$/g, '');
+      data[key] = val;
+    });
+    return { data, body: match[2].trim() };
+  }
+
+  function formatDate(dateStr) {
+    const d = new Date(dateStr);
+    if (isNaN(d)) return dateStr || '';
+    return d.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+  }
+
+  async function loadPost() {
+    const params = new URLSearchParams(window.location.search);
+    const slug = params.get('slug');
+
+    if (GITHUB_USER === "YOUR_GITHUB_USERNAME") {
+      container.innerHTML = '<p class="state-msg">Blog isn\'t connected yet — set GITHUB_USER and GITHUB_REPO in post.html once your repo is live.</p>';
+      return;
+    }
+    if (!slug) {
+      container.innerHTML = '<p class="state-msg">No post specified. <a href="blog.html">Back to blog</a>.</p>';
+      return;
+    }
+
+    try {
+      const rawUrl = `https://cdn.jsdelivr.net/gh/${GITHUB_USER}/${GITHUB_REPO}@${BRANCH}/content/blog/${slug}.md`;
+      const res = await fetch(rawUrl);
+      if (!res.ok) throw new Error('Post not found');
+      const raw = await res.text();
+      const { data, body } = parseFrontmatter(raw);
+
+      document.title = `${data.title || 'Post'} — Godfred Nana Yaw Ansah`;
+      container.innerHTML = `
+        <div class="post-date">${formatDate(data.date)}</div>
+        <h1 class="post-title">${data.title || ''}</h1>
+        <div class="post-body">${marked.parse(body)}</div>
+      `;
+    } catch (err) {
+      container.innerHTML = '<p class="state-msg">Couldn\'t find that post. <a href="blog.html">Back to blog</a>.</p>';
+    }
+  }
+
+  loadPost();
+</script>
+
+</body>
+</html>
