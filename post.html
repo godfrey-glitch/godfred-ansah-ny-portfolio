@@ -60,7 +60,7 @@
 
 <script>
   // ===== CONFIG — must match blog.html =====
-  const GITHUB_USER = godfrey-glitch";
+  const GITHUB_USER = "godfrey-glitch";
   const GITHUB_REPO = "godfred-ansah-ny-portfolio";
   const BRANCH = "main";
   // ===========================================
@@ -92,8 +92,8 @@
     const params = new URLSearchParams(window.location.search);
     const slug = params.get('slug');
 
-    if (GITHUB_USER === "godfrey-glitch") {
-      container.innerHTML = '<p class="state-msg">Blog isn\'t connected yet — set godfrey-glitch and godfred-ansah-ny-portfolio in post.html once your repo is live.</p>';
+    if (!GITHUB_USER || !GITHUB_REPO) {
+      container.innerHTML = '<p class="state-msg">Blog isn\'t connected yet — set GITHUB_USER and GITHUB_REPO in post.html once your repo is live.</p>';
       return;
     }
     if (!slug) {
@@ -102,7 +102,7 @@
     }
 
     try {
-      const rawUrl = `https://cdn.jsdelivr.net/gh/${godfrey-glitch}/${godfred-ansah-ny-portfolio}@${main}/content/blog/${slug}.md`;
+      const rawUrl = `https://cdn.jsdelivr.net/gh/${GITHUB_USER}/${GITHUB_REPO}@${BRANCH}/content/blog/${slug}.md`;
       const res = await fetch(rawUrl);
       if (!res.ok) throw new Error('Post not found');
       const raw = await res.text();
