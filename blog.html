@@ -80,11 +80,11 @@
 </footer>
 
 <script>
-  // ===== CONFIG — fill these in once your GitHub repo exists =====
+  // ===== CONFIG =====
   const GITHUB_USER = "godfrey-glitch";
   const GITHUB_REPO = "godfred-ansah-ny-portfolio";
   const BRANCH = "main";
-  // ==================================================================
+  // ===================
 
   const container = document.getElementById('postsContainer');
 
@@ -110,7 +110,7 @@
   }
 
   async function loadPosts() {
-    if (GITHUB_USER === "godfrey-glitch") {
+    if (!GITHUB_USER || !GITHUB_REPO) {
       container.innerHTML = '<p class="state-msg">Blog isn\'t connected yet — set GITHUB_USER and GITHUB_REPO in blog.html once your repo is live.</p>';
       return;
     }
