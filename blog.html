@@ -110,12 +110,12 @@
   }
 
   async function loadPosts() {
-    if (!godfrey-glitch|| !godfred-ansah-ny-portfolio) {
+    if (!GITHUB_USER || !GITHUB_REPO) {
       container.innerHTML = '<p class="state-msg">Blog isn\'t connected yet — set GITHUB_USER and GITHUB_REPO in blog.html once your repo is live.</p>';
       return;
     }
     try {
-      const listUrl = `https://api.github.com/repos/${godfrey-glitch}/${godfred-ansah-ny-portfolio}/contents/content/blog?ref=${main}`;
+      const listUrl = `https://api.github.com/repos/${GITHUB_USER}/${GITHUB_REPO}/contents/content/blog?ref=${BRANCH}`;
       const listRes = await fetch(listUrl);
       if (!listRes.ok) throw new Error('Could not reach GitHub');
       const files = (await listRes.json()).filter(f => f.name.endsWith('.md'));
@@ -126,7 +126,7 @@
       }
 
       const posts = await Promise.all(files.map(async f => {
-        const rawUrl = `https://cdn.jsdelivr.net/gh/${godfrey-glitch}/${godfred-ansah-ny-portfolio}@${main}/content/blog/${f.name}`;
+        const rawUrl = `https://cdn.jsdelivr.net/gh/${GITHUB_USER}/${GITHUB_REPO}@${BRANCH}/content/blog/${f.name}`;
         const res = await fetch(rawUrl);
         const raw = await res.text();
         const { data } = parseFrontmatter(raw);
