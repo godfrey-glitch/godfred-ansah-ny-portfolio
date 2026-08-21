@@ -1,8 +1,10 @@
 ---
-title: I Didn't Choose PR It Chose Me. Here's My Story.
+title: "  I Didn't Choose PR It Chose Me. Here's My Story."
 date: 2026-08-20T12:13:00.000+00:00
 excerpt: "My Journey into PR, Digital Communication & Social Media "
 ---
+![](/images/blog/whatsapp-image-2026-06-02-at-11.45.12-am-1-.jpeg)
+
 **Let me be honest with you.**
 
 I didn't wake up one day and say ***"I want to be a Public Relations and Digital Communication professional."*** It wasn't that clean. It wasn't that certain. In fact, for a long time, I struggled to even communicate truly communicate with the people around me.
@@ -57,3 +59,7 @@ If you are a student, a young professional, or someone finding your voice know t
 I'm **Godfred Nana Yaw Ansah** PR & Digital Communication specialist, Social Media Manager, storyteller, and advocate for inclusive communication.
 
 **Let's connect. Let's grow. Let's tell stories that matter.**
+
+![]()
+
+![]()
