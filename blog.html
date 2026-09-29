@@ -80,27 +80,12 @@
 </footer>
 
 <script>
-  // ===== CONFIG =====
-  const GITHUB_USER = "godfrey-glitch";
-  const GITHUB_REPO = "godfred-ansah-ny-portfolio";
-  const BRANCH = "main";
-  // ===================
-
   const container = document.getElementById('postsContainer');
 
-  function parseFrontmatter(raw) {
-    const match = raw.match(/^---\s*([\s\S]*?)\s*---\s*([\s\S]*)$/);
-    if (!match) return { data: {}, body: raw };
-    const data = {};
-    match[1].split('\n').forEach(line => {
-      const idx = line.indexOf(':');
-      if (idx === -1) return;
-      const key = line.slice(0, idx).trim();
-      let val = line.slice(idx + 1).trim();
-      val = val.replace(/^['"]|['"]$/g, '');
-      data[key] = val;
-    });
-    return { data, body: match[2].trim() };
+  function escapeHtml(value) {
+    return String(value).replace(/[&<>'"]/g, char => ({
+      '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;'
+    })[char]);
   }
 
   function formatDate(dateStr) {
@@ -110,41 +95,24 @@
   }
 
   async function loadPosts() {
-    if (!GITHUB_USER || !GITHUB_REPO) {
-      container.innerHTML = '<p class="state-msg">Blog isn\'t connected yet — set GITHUB_USER and GITHUB_REPO in blog.html once your repo is live.</p>';
-      return;
-    }
     try {
-      const listUrl = `https://api.github.com/repos/${GITHUB_USER}/${GITHUB_REPO}/contents/content/blog?ref=${BRANCH}`;
-      const listRes = await fetch(listUrl);
-      if (!listRes.ok) throw new Error('Could not reach GitHub');
-      const files = (await listRes.json()).filter(f => f.name.endsWith('.md'));
+      const response = await fetch('blog-data.json', { cache: 'no-cache' });
+      if (!response.ok) throw new Error('Could not load the blog index');
+      const posts = await response.json();
+      if (!Array.isArray(posts)) throw new Error('Invalid blog index');
 
-      if (files.length === 0) {
+      if (posts.length === 0) {
         container.innerHTML = '<p class="state-msg">No posts yet — publish your first one from <a href="/admin/">/admin</a>.</p>';
         return;
       }
-
-      const posts = await Promise.all(files.map(async f => {
-        const rawUrl = `https://cdn.jsdelivr.net/gh/${GITHUB_USER}/${GITHUB_REPO}@${BRANCH}/content/blog/${f.name}`;
-        const res = await fetch(rawUrl);
-        const raw = await res.text();
-        const { data } = parseFrontmatter(raw);
-        return {
-          slug: f.name.replace(/\.md$/, ''),
-          title: data.title || f.name,
-          date: data.date || '',
-          excerpt: data.excerpt || ''
-        };
-      }));
 
       posts.sort((a, b) => new Date(b.date) - new Date(a.date));
 
       container.innerHTML = posts.map(p => `
         <a class="post-card" href="post.html?slug=${encodeURIComponent(p.slug)}">
-          <div class="post-date">${formatDate(p.date)}</div>
-          <div class="post-title">${p.title}</div>
-          <div class="post-excerpt">${p.excerpt}</div>
+          <div class="post-date">${escapeHtml(formatDate(p.date))}</div>
+          <div class="post-title">${escapeHtml(p.title)}</div>
+          <div class="post-excerpt">${escapeHtml(p.excerpt)}</div>
         </a>
       `).join('');
     } catch (err) {

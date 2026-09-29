@@ -59,12 +59,6 @@
 </footer>
 
 <script>
-  // ===== CONFIG — must match blog.html =====
-  const GITHUB_USER = "godfrey-glitch";
-  const GITHUB_REPO = "godfred-ansah-ny-portfolio";
-  const BRANCH = "main";
-  // ===========================================
-
   const container = document.getElementById('postContainer');
 
   function parseFrontmatter(raw) {
@@ -88,30 +82,36 @@
     return d.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
   }
 
+  function escapeHtml(value) {
+    return String(value).replace(/[&<>'"]/g, char => ({
+      '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;'
+    })[char]);
+  }
+
   async function loadPost() {
     const params = new URLSearchParams(window.location.search);
     const slug = params.get('slug');
 
-    if (GITHUB_USER === "YOUR_GITHUB_USERNAME") {
-      container.innerHTML = '<p class="state-msg">Blog isn\'t connected yet — set GITHUB_USER and GITHUB_REPO in post.html once your repo is live.</p>';
-      return;
-    }
     if (!slug) {
       container.innerHTML = '<p class="state-msg">No post specified. <a href="blog.html">Back to blog</a>.</p>';
       return;
     }
+    if (!/^[\p{L}\p{N}][\p{L}\p{N}\-'’]*$/u.test(slug)) {
+      container.innerHTML = '<p class="state-msg">That post address is invalid. <a href="blog.html">Back to blog</a>.</p>';
+      return;
+    }
 
     try {
-      const rawUrl = `https://cdn.jsdelivr.net/gh/${GITHUB_USER}/${GITHUB_REPO}@${BRANCH}/content/blog/${slug}.md`;
-      const res = await fetch(rawUrl);
+      const postUrl = `content/blog/${encodeURIComponent(slug)}.md`;
+      const res = await fetch(postUrl, { cache: 'no-cache' });
       if (!res.ok) throw new Error('Post not found');
       const raw = await res.text();
       const { data, body } = parseFrontmatter(raw);
 
       document.title = `${data.title || 'Post'} — Godfred Nana Yaw Ansah`;
       container.innerHTML = `
-        <div class="post-date">${formatDate(data.date)}</div>
-        <h1 class="post-title">${data.title || ''}</h1>
+        <div class="post-date">${escapeHtml(formatDate(data.date))}</div>
+        <h1 class="post-title">${escapeHtml(data.title || '')}</h1>
         <div class="post-body">${marked.parse(body)}</div>
       `;
     } catch (err) {
